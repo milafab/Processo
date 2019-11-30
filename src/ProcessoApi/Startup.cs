@@ -28,6 +28,7 @@ namespace ProcessoApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddCors();
 
             services.AddDbContext<PostgreeContext>(options =>
                         options.UseNpgsql(Configuration.GetConnectionString("Postgree")));
@@ -47,6 +48,10 @@ namespace ProcessoApi
             {
                 app.UseHsts();
             }
+            app.UseCors(options =>
+                options.AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin());
 
             app.UseHttpsRedirection();
             app.UseMvc();

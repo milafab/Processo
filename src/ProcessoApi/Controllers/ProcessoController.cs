@@ -21,7 +21,7 @@ namespace ProcessoApi.Controllers
             _repository = repository;
         }
 
-        [HttpGet("numero_prcesso/{id}")]
+        [HttpGet("numero_processo/{id}")]
         public IActionResult GetByCodigo(string id)
         {
             DadosProcesso processo = _repository.BuscaPorCodigo(id);
@@ -35,7 +35,6 @@ namespace ProcessoApi.Controllers
         [HttpGet("lista_processos")]
         public IActionResult Get()
         {
-
             List<DadosProcesso> processos = _repository.ListaProcessos();
 
             if (processos.Any())
